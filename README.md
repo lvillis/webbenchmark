@@ -3,11 +3,11 @@
 # WebBenchmark
 *An http benchmark tool that can exhaust the bandwidth of your server.*
 
-[![](https://img.shields.io/github/license/lvillis/webBenchmark?style=flat-square)](https://github.com/lvillis/Dockerfiles)
-[![](https://img.shields.io/github/repo-size/lvillis/webBenchmark?style=flat-square&color=328657)](https://github.com/lvillis/Dockerfiles)
-[![Github Actions](https://img.shields.io/github/workflow/status/lvillis/webBenchmark/Docker?style=flat-square)](https://github.com/lvillis/serverstatus/actions) 
+[![](https://img.shields.io/github/license/lvillis/webbenchmark?style=flat-square)](https://github.com/lvillis/webbenchmark)
+[![](https://img.shields.io/github/repo-size/lvillis/webbenchmark?style=flat-square&color=328657)](https://github.com/lvillis/webbenchmark)
+[![Github Actions](https://img.shields.io/github/workflow/status/lvillis/webbenchmark/Docker?style=flat-square)](https://github.com/lvillis/webbenchmark/actions) 
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/lvillis/webbenchmark/latest?style=flat-square)](https://hub.docker.com)
-[![](https://img.shields.io/github/last-commit/lvillis/webBenchmark?style=flat-square&label=commits)](https://github.com/lvillis/Dockerfiles)
+[![](https://img.shields.io/github/last-commit/lvillis/webBenchmark?style=flat-square&label=commits)](https://github.com/lvillis/webbenchmark)
 
 </div>
 
