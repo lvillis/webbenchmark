@@ -1,7 +1,7 @@
 <div align="center">
 
 # WebBenchmark
-*http benchmark tool to ran out your server bandwidth.*
+*An http benchmark tool that can exhaust the bandwidth of your server.*
 
 [![](https://img.shields.io/github/license/lvillis/webBenchmark?style=flat-square)](https://github.com/lvillis/Dockerfiles)
 [![](https://img.shields.io/github/repo-size/lvillis/webBenchmark?style=flat-square&color=328657)](https://github.com/lvillis/Dockerfiles)
