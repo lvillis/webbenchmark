@@ -1,0 +1,38 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CONTEXT: .
+  REPO_NAME: lvillis/webbenchmark
+  TAG_NAME: latest
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1.3.0
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1.9.0
+        # echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.TAG_NAME }}.Dockerfile
+          push: true
+          tags: ${{ env.REPO_NAME }}:${{ env.TAG_NAME }}
+          cache-from: type=registry,ref=${{ env.REPO_NAME }}:${{ env.TAG_NAME }}
+          cache-to: type=inline
