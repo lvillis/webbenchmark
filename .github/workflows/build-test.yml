@@ -29,7 +29,7 @@ jobs:
           fi
 
       - name: Build
-        run: go build -v ./cmd
+        run: go build -v ./cmd/main.go
 
       - name: Test
         run: go test -v .
