@@ -93,7 +93,7 @@ func showStat() {
 			netName := netCounter[i].Name
 			netRecv := readableBytes(float64(netCounter[i].BytesRecv - initialNetCounter[i].BytesRecv))
 			netSent := readableBytes(float64(netCounter[i].BytesSent - initialNetCounter[i].BytesSent))
-			log("Nic: {netName} ↑ {netRecv} | ↓ {netSent}", P{"netName": netName, "netRecv": netRecv, "netSent": netSent})
+			log("Nic: {netName} ↓ {netRecv} | ↑ {netSent}", P{"netName": netName, "netRecv": netRecv, "netSent": netSent})
 		}
 		initialNetCounter = netCounter
 		time.Sleep(1 * time.Millisecond)
@@ -138,7 +138,7 @@ func benchmark(url string, method string, postData string, referer string, xForw
 
 func main() {
 	var thread, _ = strconv.Atoi(getEnv("THREAD", "16"))
-	var url = getEnv("URL", "https://baidu.com")
+	var url = getEnv("URL", "http://cachefly.cachefly.net/100mb.test")
 	var method = getEnv("METHOD", "GET")
 	var postData = getEnv("POST_DATA", "")
 	var referer = getEnv("referer", "")

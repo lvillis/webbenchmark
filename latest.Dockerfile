@@ -1,8 +1,8 @@
-ARG GOLANG_VERSION="1.16"
+ARG GOLANG_VERSION="1.18"
 FROM golang:$GOLANG_VERSION-alpine as builder
 
 WORKDIR /src/
-COPY main.go go.* /src/
+COPY cmd/main.go go.* /src/
 RUN CGO_ENABLED=0 GOOS=linux go build -o /src/main .
 
 FROM alpine:3.14
