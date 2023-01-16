@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v3.2.0
+        uses: docker/build-push-action@v3.3.0
         with:
           context: ${{ env.CONTEXT }}
           file: ${{ env.TAG_NAME }}.Dockerfile
