@@ -5,7 +5,7 @@ WORKDIR /src/
 COPY cmd/main.go go.* /src/
 RUN CGO_ENABLED=0 GOOS=linux go build -o /src/main .
 
-FROM alpine:3.14
+FROM alpine:3.17 as runtime
 
 COPY --from=builder /src/main /src/main
 WORKDIR /src
