@@ -1,9 +1,14 @@
-name: Docker
+name: Docker Publish
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: [ "Go CI" ]
+    types:
+      - completed
+
+  # push:
+  #  branches:
+  #    - main
 
 env:
   CONTEXT: .
