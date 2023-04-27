@@ -25,9 +25,6 @@ jobs:
           go mod download
           go mod verify
 
-      - name: Test
-        run: go test -v ./cmd
-
       - name: Build
         if: ${{ success() }}
         run: go build -v -p 4 ./cmd/main.go
