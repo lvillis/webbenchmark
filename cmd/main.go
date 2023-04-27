@@ -1,12 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"math"
 	"math/rand"
-	"net/http"
 	"os"
 	"strconv"
 	"strings"
@@ -18,6 +18,7 @@ import (
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+	"github.com/valyala/fasthttp"
 )
 
 func getEnv(key string, defaultValue string) string {
@@ -102,15 +103,13 @@ func showStat() {
 
 func benchmark(url string, method string, postData string, referer string, xForwardFor bool, wg *sync.WaitGroup) {
 	for true {
-		var request *http.Request
-		var err1 error = nil
-		if method == "GET" {
-			request, err1 = http.NewRequest(method, url, nil)
-		} else {
-			request, err1 = http.NewRequest(method, url, strings.NewReader(postData))
-		}
-		if err1 != nil {
-			continue
+		var request *fasthttp.Request
+		var response *fasthttp.Response
+		request = fasthttp.AcquireRequest()
+		request.Header.SetMethod(method)
+		request.SetRequestURI(url)
+		if method == "POST" {
+			request.SetBodyString(postData)
 		}
 		if len(referer) == 0 {
 			referer = url
@@ -123,15 +122,20 @@ func benchmark(url string, method string, postData string, referer string, xForw
 			request.Header.Add("X-Forwarded-For", randomIp)
 			request.Header.Add("X-Real-IP", randomIp)
 		}
-		client := &http.Client{}
-		response, err2 := client.Do(request)
-		if err2 != nil {
+		response = fasthttp.AcquireResponse()
+		if err := fasthttp.Do(request, response); err != nil {
+			fasthttp.ReleaseRequest(request)
+			fasthttp.ReleaseResponse(response)
 			continue
 		}
-		_, err3 := io.Copy(ioutil.Discard, response.Body)
-		if err3 != nil {
+		_, err := io.Copy(ioutil.Discard, bytes.NewReader(response.Body()))
+		if err != nil {
+			fasthttp.ReleaseRequest(request)
+			fasthttp.ReleaseResponse(response)
 			continue
 		}
+		fasthttp.ReleaseRequest(request)
+		fasthttp.ReleaseResponse(response)
 	}
 	wg.Done()
 }
