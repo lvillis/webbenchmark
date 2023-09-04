@@ -10,7 +10,7 @@ ENV GOOS=linux
 RUN go mod download
 RUN go build -o ./bin/webbenchmark ./cmd/main.go
 
-FROM alpine:3.17 as runtime
+FROM alpine:3.18.3 as runtime
 
 COPY --from=builder /src/bin/webbenchmark /bin/webbenchmark
 
