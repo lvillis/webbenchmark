@@ -1,6 +1,6 @@
 module github.com/lvillis/webBenchmark
 
-go 1.20
+go 1.21
 
 require (
 	github.com/EDDYCJY/fake-useragent v0.2.0
