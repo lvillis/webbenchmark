@@ -41,4 +41,4 @@ docker run -d \
 [![Jetbrains Logo](https://krwu.github.io/img/jetbrains.svg)](https://www.jetbrains.com/?from=serverstatus)
 
 Thanks to [Jetbrains](https://www.jetbrains.com/?from=serverstatus) for supporting this small open source project! I
-used Pycharm and WebStorm for years, they are the best tools!
+used GoLand and PyCharm for years, they are the best tools!
