@@ -1,4 +1,4 @@
-ARG GOLANG_VERSION="1.20.3"
+ARG GOLANG_VERSION="1.21.0"
 FROM golang:${GOLANG_VERSION}-alpine as builder
 
 COPY . /src/
