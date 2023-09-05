@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v4.1.1
         with:
           context: ${{ env.CONTEXT }}
-          file: ${{ env.TAG_NAME }}.Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ env.REPO_NAME }}:${{ env.TAG_NAME }}
           cache-from: type=registry,ref=${{ env.REPO_NAME }}:${{ env.TAG_NAME }}
