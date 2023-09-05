@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math"
 	"math/rand"
 	"net/http"
@@ -129,7 +128,7 @@ func benchmark(url string, method string, postData string, referer string, xForw
 		if err2 != nil {
 			continue
 		}
-		_, err3 := io.Copy(ioutil.Discard, response.Body)
+		_, err3 := io.Copy(io.Discard, response.Body)
 		if err3 != nil {
 			continue
 		}
