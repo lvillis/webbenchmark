@@ -64,8 +64,9 @@ func RandStringBytesMaskImpr(n int) string {
 }
 
 func generateRandomIPAddress() string {
-	rand.Seed(time.Now().Unix())
-	ip := fmt.Sprintf("%d.%d.%d.%d", rand.Intn(255), rand.Intn(255), rand.Intn(255), rand.Intn(255))
+	src := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(src)
+	ip := fmt.Sprintf("%d.%d.%d.%d", r.Intn(255), r.Intn(255), r.Intn(255), r.Intn(255))
 	return ip
 }
 
