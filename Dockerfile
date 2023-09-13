@@ -1,21 +1,21 @@
 ARG GOLANG_VERSION="1.21.0"
 FROM golang:${GOLANG_VERSION}-alpine as builder
 
-COPY . /src/
+COPY . /src
 WORKDIR /src
 
-ENV CGO_ENABLED=0
-ENV GOOS=linux
+RUN <<EOF
+    go mod download
+    CGO_ENABLED=0 GOOS=linux go build -o ./bin/webbenchmark ./cmd/main.go
+EOF
 
-RUN go mod download
-RUN go build -o ./bin/webbenchmark ./cmd/main.go
 
 FROM alpine:3.18.3 as runtime
 
-COPY --from=builder /src/bin/webbenchmark /bin/webbenchmark
+COPY --from=builder /src/output/webbenchmark /webbenchmark
 
 ENV URL http://cachefly.cachefly.net/100mb.test
 
-RUN chmod +x /bin/webbenchmark
+RUN chmod +x /webbenchmark
 
-ENTRYPOINT ["/bin/webbenchmark"]
+ENTRYPOINT ["/webbenchmark"]
