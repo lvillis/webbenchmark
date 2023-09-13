@@ -29,7 +29,8 @@ docker run -d \
     -e url="http://cachefly.cachefly.net/100mb.test" \
     -e method="GET" \
     -e thread=8 \
-    --restart=always lvillis/webbenchmark:latest
+    --restart=unless-stopped \
+    lvillis/webbenchmark:latest
 ```
 
 ## Related open source projects:
