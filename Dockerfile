@@ -6,7 +6,7 @@ WORKDIR /src
 
 RUN <<EOF
     go mod download
-    CGO_ENABLED=0 GOOS=linux go build -o ./bin/webbenchmark ./cmd/main.go
+    CGO_ENABLED=0 GOOS=linux go build -o ./output/webbenchmark ./cmd/main.go
 EOF
 
 
