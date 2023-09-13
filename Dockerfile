@@ -1,5 +1,4 @@
-ARG GOLANG_VERSION="1.21.0"
-FROM golang:${GOLANG_VERSION}-alpine as builder
+FROM golang:1.21.0-alpine as builder
 
 COPY . /src
 WORKDIR /src
